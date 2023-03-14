@@ -1,5 +1,6 @@
 import useSWRInfinite from "swr/infinite";
 import { last } from "lodash";
+import { NextRouter } from "next/router";
 
 type CollectionOutput<T> = {
   repos: T[];
@@ -46,4 +47,11 @@ export const useRepos = (): CollectionOutput<ResponseBody> => {
     isValidating,
     isLoading,
   };
+};
+
+export const fallbackUseRepos = async (query: NextRouter["query"]) => {
+  const pageIndex = query ? Number(query.pageIndex) : 0;
+  const response = await fetcher(getUrl(pageIndex));
+
+  return response;
 };
