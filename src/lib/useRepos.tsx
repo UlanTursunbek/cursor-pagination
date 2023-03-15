@@ -49,9 +49,8 @@ export const useRepos = (): CollectionOutput<ResponseBody> => {
   };
 };
 
-export const fallbackUseRepos = async (query: NextRouter["query"]) => {
-  const pageIndex = query ? Number(query.pageIndex) : 0;
-  const response = await fetcher(getUrl(pageIndex));
+export const fallbackUseRepos = async () => {
+  const response = await fetcher(getUrl(0));
 
   return response;
 };
