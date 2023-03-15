@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import classes from "./index.module.css";
+import classes from "./layout.module.css";
 
 type PropsLayout = {
   children: ReactElement;

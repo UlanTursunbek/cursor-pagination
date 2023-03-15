@@ -1,6 +1,6 @@
 import { useRef, useEffect, createElement, FunctionComponent } from "react";
 
-type PropsUseInfiniteTrigger = {
+type PropsInfiniteLoadingTrigger = {
   isLoading: boolean;
   isReachedEnd: boolean;
   callbackLoadMore: () => void;
@@ -22,7 +22,7 @@ export const InfiniteLoadingTrigger = ({
   ComponentButton,
   ComponentLoading,
   ComponentEmpty,
-}: PropsUseInfiniteTrigger) => {
+}: PropsInfiniteLoadingTrigger) => {
   const refLoadMore = useRef(null);
 
   useEffect(() => {

@@ -1,8 +1,8 @@
-import { InfiniteLoadingTrigger } from "../../lib/InfiniteLoadingTrigger";
-import { useRepos } from "../../lib/useRepos";
+import { InfiniteLoadingTrigger } from "../lib/InfiniteLoadingTrigger";
+import { useRepos } from "../lib/useRepos";
+import { Item } from "./item";
 
 import classes from "./index.module.css";
-import { Item } from "../Item";
 
 export const Home = () => {
   const { repos, isValidating, isLoading, isReady, loadMore, isReachedEnd } =
