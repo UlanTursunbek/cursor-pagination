@@ -5,12 +5,7 @@ import { Item } from "./item";
 import classes from "./index.module.css";
 
 export const Home = () => {
-  const { repos, isValidating, isLoading, isReady, loadMore, isReachedEnd } =
-    useRepos();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { repos, isValidating, isReady, loadMore, isReachedEnd } = useRepos();
 
   return (
     <div className={classes.wrapper}>
@@ -23,15 +18,27 @@ export const Home = () => {
           callbackLoadMore={loadMore}
           isLoading={isValidating}
           isReachedEnd={isReachedEnd}
-          ComponentButton={() => (
-            <button type="button" onClick={loadMore}>
-              Load more
-            </button>
-          )}
-          ComponentLoading={() => <span>Loading...</span>}
-          ComponentEmpty={() => <span>No more items</span>}
+          ComponentButton={() => <LoadMoreButton onClick={loadMore} />}
+          ComponentLoading={Loader}
+          ComponentEmpty={Empty}
         />
       )}
     </div>
   );
 };
+
+function Loader() {
+  return <span>Loading...</span>;
+}
+
+function LoadMoreButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick}>
+      Load more
+    </button>
+  );
+}
+
+function Empty() {
+  return <span>Empty</span>;
+}

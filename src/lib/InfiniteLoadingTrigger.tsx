@@ -1,12 +1,12 @@
-import { useRef, useEffect, createElement, FunctionComponent } from "react";
+import { useRef, useEffect, ReactNode, FC } from "react";
 
 type PropsInfiniteLoadingTrigger = {
   isLoading: boolean;
   isReachedEnd: boolean;
   callbackLoadMore: () => void;
-  ComponentButton: FunctionComponent;
-  ComponentLoading: FunctionComponent;
-  ComponentEmpty: FunctionComponent;
+  ComponentButton: FC;
+  ComponentLoading: FC;
+  ComponentEmpty: FC;
 };
 
 const options = {
@@ -44,11 +44,13 @@ export const InfiniteLoadingTrigger = ({
   return (
     <>
       {isLoading ? (
-        createElement(ComponentLoading)
+        <ComponentLoading />
       ) : isReachedEnd ? (
-        createElement(ComponentEmpty)
+        <ComponentEmpty />
       ) : (
-        <div ref={refLoadMore}>{createElement(ComponentButton)}</div>
+        <div ref={refLoadMore}>
+          <ComponentButton />
+        </div>
       )}
     </>
   );
