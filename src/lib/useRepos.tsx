@@ -27,9 +27,9 @@ const getUrl = (pageIndex: number) =>
   }`;
 
 const getKey = (pageIndex: number, previousPageData: ResponseBody[]) => {
-  if (previousPageData && !previousPageData.length) return null; // reached the end
+  if (previousPageData && !previousPageData.length) return null;
 
-  return getUrl(pageIndex); // SWR key
+  return getUrl(pageIndex);
 };
 
 export const useRepos = (): CollectionOutput<ResponseBody> => {
@@ -49,8 +49,10 @@ export const useRepos = (): CollectionOutput<ResponseBody> => {
   };
 };
 
-export const fallbackUseRepos = async () => {
-  const response = await fetcher(getUrl(0));
+export const fallbackUseRepos = async (query: NextRouter["query"]) => {
+  const pageIndex = query ? Number(query.page) : 0;
+
+  const response = await fetcher(getUrl(pageIndex));
 
   return response;
 };

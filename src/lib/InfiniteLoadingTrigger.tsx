@@ -1,4 +1,4 @@
-import { useRef, useEffect, ReactNode, FC } from "react";
+import { useRef, useEffect, FC } from "react";
 
 type PropsInfiniteLoadingTrigger = {
   isLoading: boolean;

@@ -2,7 +2,6 @@ import { Inter } from "next/font/google";
 import { NextRouter } from "next/router";
 import type { ReactElement } from "react";
 import { unstable_serialize } from "swr";
-import { GetServerSideProps } from "next";
 
 import { Home } from "../components";
 import { Layout } from "../components/layout";
@@ -22,8 +21,8 @@ PageHome.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await fallbackUseRepos();
+export async function getStaticProps(query: NextRouter["query"]) {
+  const response = await fallbackUseRepos(query);
 
   return {
     props: {
@@ -32,4 +31,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
     },
   };
-};
+}
